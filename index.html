@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Il Mio Emulatore GBA Online</title>
+    <style>
+        body { background: #222; color: white; text-align: center; font-family: sans-serif; }
+        canvas { border: 5px solid #444; background: #000; width: 480px; height: 320px; }
+        .controls { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>GBA Web Emulator</h1>
+    
+    <canvas id="screen"></canvas>
+
+    <div class="controls">
+        <p>Carica la tua ROM originale (.gba):</p>
+        <input type="file" id="rom-upload" accept=".gba">
+    </div>
+
+    <script src="https://unpkg.com/gbajs/dist/index.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
