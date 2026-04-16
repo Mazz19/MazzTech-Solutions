@@ -2,20 +2,41 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBA Emulator Showcase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GBA Emulator - Progetto Presentazione</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="emulator-container">
-        <h1>GBA JS Emulator</h1>
+        <h1>GBA Web Showcase</h1>
         
         <canvas id="gba-canvas" width="240" height="160"></canvas>
 
-        <div class="controls">
+        <div class="upload-section">
             <input type="file" id="rom-file" accept=".gba">
-            <p>Usa le frecce direzionali, Z (A), X (B), Invio (Start) e Shift (Select)</p>
+            <p class="desktop-hint">Z=A | X=B | Invio=Start | Shift=Select</p>
+        </div>
+
+        <div id="touch-controls">
+            <div class="d-pad">
+                <button id="btn-up" class="btn">↑</button>
+                <div class="horizontal-dpad">
+                    <button id="btn-left" class="btn">←</button>
+                    <button id="btn-right" class="btn">→</button>
+                </div>
+                <button id="btn-down" class="btn">↓</button>
+            </div>
+
+            <div class="system-buttons">
+                <button id="btn-select" class="btn-small">SELECT</button>
+                <button id="btn-start" class="btn-small">START</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="btn-b" class="btn-round">B</button>
+                <button id="btn-a" class="btn-round">A</button>
+            </div>
         </div>
     </div>
 
@@ -23,25 +44,5 @@
     <script src="https://taisel.github.io/IodineGBA/IodineGBA/core/SRAM.js"></script>
     <script src="https://taisel.github.io/IodineGBA/IodineGBA/IodineGBA.js"></script>
     <script src="main.js"></script>
-<div id="touch-controls">
-    <div class="d-pad">
-        <button id="btn-up" class="btn">↑</button>
-        <div class="horizontal-dpad">
-            <button id="btn-left" class="btn">←</button>
-            <button id="btn-right" class="btn">→</button>
-        </div>
-        <button id="btn-down" class="btn">↓</button>
-    </div>
-
-    <div class="action-buttons">
-        <button id="btn-b" class="btn-round">B</button>
-        <button id="btn-a" class="btn-round">A</button>
-    </div>
-
-    <div class="system-buttons">
-        <button id="btn-select" class="btn-small">SELECT</button>
-        <button id="btn-start" class="btn-small">START</button>
-    </div>
-</div>
 </body>
 </html>
