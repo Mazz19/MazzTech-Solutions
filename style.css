@@ -1,74 +1,70 @@
 body {
-    background-color: #1a1a1a;
-    color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    touch-action: none; /* Impedisce zoom e scroll accidentali */
 }
 
 .emulator-container {
-    text-align: center;
-    background: #333;
+    background: #2a2a2a;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    text-align: center;
+    max-width: 95vw;
 }
 
 canvas {
     background-color: #000;
-    width: 480px; /* Scalato per visibilità */
-    height: 320px;
-    border: 4px solid #555;
-    image-rendering: pixelated; /* Mantiene l'effetto retro senza sfocature */
+    width: 100%;
+    max-width: 480px; /* Scalato x2 rispetto all'originale */
+    height: auto;
+    border: 6px solid #444;
+    border-radius: 8px;
+    image-rendering: pixelated;
 }
 
-.controls {
-    margin-top: 15px;
-}
+.upload-section { margin: 15px 0; }
+.desktop-hint { font-size: 0.8em; color: #888; }
 
-input[type="file"] {
-    margin-bottom: 10px;
-    color: white;
-}
-/* Layout per i controlli touch */
+/* Layout Controlli Touch */
 #touch-controls {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    user-select: none; /* Impedisce la selezione del testo */
-    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn, .btn-round, .btn-small {
     background: #444;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 15px;
+    cursor: pointer;
     font-weight: bold;
-    touch-action: manipulation; /* Ottimizza il tocco su mobile */
+    box-shadow: 0 4px 0 #222;
 }
 
-.btn-round {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #a00; /* Rosso tipico pulsanti Nintendo */
-    margin: 5px;
-}
+.btn:active, .btn-round:active { transform: translateY(2px); box-shadow: 0 2px 0 #111; }
 
 .d-pad { display: flex; flex-direction: column; align-items: center; }
-.horizontal-dpad { display: flex; gap: 40px; }
+.horizontal-dpad { display: flex; gap: 30px; }
+.btn { width: 50px; height: 50px; border-radius: 5px; }
 
-.system-buttons { width: 100%; margin-top: 20px; }
-.btn-small { padding: 10px 20px; background: #666; font-size: 0.8em; }
+.action-buttons { display: flex; gap: 15px; }
+.btn-round { width: 60px; height: 60px; border-radius: 50%; background: #c0392b; font-size: 1.2em; }
 
-/* Nascondi i controlli su PC se preferisci, o lasciali visibili per il debug */
-@media (min-width: 1024px) {
-    /* #touch-controls { display: none; } */
+.system-buttons { display: flex; flex-direction: column; gap: 10px; }
+.btn-small { width: 80px; height: 30px; font-size: 0.7em; border-radius: 15px; background: #555; }
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.2em; }
+    .btn { width: 40px; height: 40px; }
+    .btn-round { width: 50px; height: 50px; }
 }
