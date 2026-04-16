@@ -5,39 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GBA Partner - Pokémon Master Edition</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-        .emulator-card { background: #1e1e1e; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #3498db; width: 90%; max-width: 600px; text-align: center; }
-        #game-container { width: 100%; aspect-ratio: 3 / 2; background: #000; border-radius: 10px; margin: 20px 0; overflow: hidden; position: relative; }
-        .controls-hint { font-size: 0.8em; color: #888; background: #252525; padding: 10px; border-radius: 10px; margin-top: 10px; }
-        h1 { margin: 0; color: #3498db; font-size: 1.5em; }
-        .badge { background: #2ecc71; color: #000; padding: 2px 8px; border-radius: 5px; font-size: 0.7em; vertical-align: middle; font-weight: bold; }
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .emulator-card { background: #1e1e1e; padding: 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 2px solid #e67e22; width: 90%; max-width: 640px; text-align: center; }
+        #game-container { width: 100%; height: 400px; background: #000; border-radius: 10px; margin: 20px 0; overflow: hidden; display: none; /* Nascosto finché non carichi la ROM */ }
+        .upload-area { border: 2px dashed #e67e22; padding: 40px; border-radius: 15px; cursor: pointer; transition: 0.3s; }
+        .upload-area:hover { background: rgba(230, 126, 34, 0.1); }
+        .btn-start { background: #e67e22; color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        h1 { color: #e67e22; margin: 0; }
     </style>
 </head>
 <body>
 
-    <div class="emulator-card">
-        <h1>GBA Partner <span class="badge">PRO CORE</span></h1>
-        <p style="font-size: 0.9em; color: #bbb;">GitHub Pages Detected: mGBA Core Armato 🚀</p>
+    <div class="emulator-card" id="main-card">
+        <h1>GBA Partner <span style="font-size: 0.5em; background: #fff; color: #000; padding: 2px 5px; border-radius: 3px;">V2.0</span></h1>
+        
+        <div id="setup-area">
+            <p>Seleziona la tua ROM di Pokémon per iniziare</p>
+            <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <p>📁 Clicca qui o trascina la ROM (.gba)</p>
+                <input type="file" id="file-input" accept=".gba" style="display:none">
+            </div>
+        </div>
 
         <div id="game-container">
             <div id="game"></div>
         </div>
 
-        <div class="controls-hint">
-            ⌨️ <b>Tasti:</b> Frecce (Movimento) | Z (A) | X (B) | Invio (Start) | Shift (Select)
+        <div id="info" style="margin-top: 15px; font-size: 0.8em; color: #888;">
+            In attesa della ROM...
         </div>
     </div>
 
     <script>
-        // Configurazione per il caricamento professionale
-        window.EJS_player = '#game';
-        window.EJS_core = 'gba'; 
-        window.EJS_startOnLoaded = false; // Aspetta che l'utente scelga la ROM
-        window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
-        window.EJS_gameUrl = ''; // Verrà popolato al caricamento del file
-    </script>
-    <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+        const fileInput = document.getElementById('file-input');
+        const setupArea = document.getElementById('setup-area');
+        const gameContainer = document.getElementById('game-container');
+        const info = document.getElementById('info');
 
-    <p style="margin-top: 20px; font-size: 0.8em; color: #555;">Design by Gemini AI • EmulatorJS Integration</p>
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Creiamo un URL temporaneo per il file locale
+            const romUrl = URL.createObjectURL(file);
+
+            // Configuriamo EmulatorJS con il file appena scelto
+            window.EJS_player = '#game';
+            window.EJS_core = 'gba';
+            window.EJS_gameUrl = romUrl; // Iniettiamo la ROM qui!
+            window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+            window.EJS_startOnLoaded = true;
+
+            // Nascondiamo l'upload e mostriamo il gioco
+            setupArea.style.display = 'none';
+            gameContainer.style.display = 'block';
+            info.innerText = "Caricamento core e decompressione in corso... Un attimo di pazienza!";
+
+            // Carichiamo il motore
+            const loader = document.createElement('script');
+            loader.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+            document.body.appendChild(loader);
+        };
+    </script>
 </body>
 </html>
