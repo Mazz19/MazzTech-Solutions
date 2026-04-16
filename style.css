@@ -1,0 +1,39 @@
+/* Layout per i controlli touch */
+#touch-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    user-select: none; /* Impedisce la selezione del testo */
+    -webkit-user-select: none;
+}
+
+.btn, .btn-round, .btn-small {
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    font-weight: bold;
+    touch-action: manipulation; /* Ottimizza il tocco su mobile */
+}
+
+.btn-round {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #a00; /* Rosso tipico pulsanti Nintendo */
+    margin: 5px;
+}
+
+.d-pad { display: flex; flex-direction: column; align-items: center; }
+.horizontal-dpad { display: flex; gap: 40px; }
+
+.system-buttons { width: 100%; margin-top: 20px; }
+.btn-small { padding: 10px 20px; background: #666; font-size: 0.8em; }
+
+/* Nascondi i controlli su PC se preferisci, o lasciali visibili per il debug */
+@media (min-width: 1024px) {
+    /* #touch-controls { display: none; } */
+}
