@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBA Emulator Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="emulator-container">
+        <h1>GBA JS Emulator</h1>
+        
+        <canvas id="gba-canvas" width="240" height="160"></canvas>
+
+        <div class="controls">
+            <input type="file" id="rom-file" accept=".gba">
+            <p>Usa le frecce direzionali, Z (A), X (B), Invio (Start) e Shift (Select)</p>
+        </div>
+    </div>
+
+    <script src="https://taisel.github.io/IodineGBA/IodineGBA/core/Cartridge.js"></script>
+    <script src="https://taisel.github.io/IodineGBA/IodineGBA/core/SRAM.js"></script>
+    <script src="https://taisel.github.io/IodineGBA/IodineGBA/IodineGBA.js"></script>
+    <script src="main.js"></script>
 <div id="touch-controls">
     <div class="d-pad">
         <button id="btn-up" class="btn">↑</button>
@@ -18,3 +43,5 @@
         <button id="btn-start" class="btn-small">START</button>
     </div>
 </div>
+</body>
+</html>
