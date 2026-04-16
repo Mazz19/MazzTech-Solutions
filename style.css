@@ -1,3 +1,38 @@
+body {
+    background-color: #1a1a1a;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.emulator-container {
+    text-align: center;
+    background: #333;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+canvas {
+    background-color: #000;
+    width: 480px; /* Scalato per visibilità */
+    height: 320px;
+    border: 4px solid #555;
+    image-rendering: pixelated; /* Mantiene l'effetto retro senza sfocature */
+}
+
+.controls {
+    margin-top: 15px;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+    color: white;
+}
 /* Layout per i controlli touch */
 #touch-controls {
     display: flex;
